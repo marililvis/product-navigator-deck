@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BacklogOrderingRouteImport } from './routes/backlog-ordering'
 import { Route as ProductGoalRouteImport } from './routes/product-goal'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as SplittingRouteImport } from './routes/splitting'
+import { Route as StoryMappingRouteImport } from './routes/story-mapping'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BacklogOrderingRoute = BacklogOrderingRouteImport.update({
+  id: '/backlog-ordering',
+  path: '/backlog-ordering',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductGoalRoute = ProductGoalRouteImport.update({
@@ -28,35 +36,76 @@ const RoadmapRoute = RoadmapRouteImport.update({
   path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SplittingRoute = SplittingRouteImport.update({
+  id: '/splitting',
+  path: '/splitting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoryMappingRoute = StoryMappingRouteImport.update({
+  id: '/story-mapping',
+  path: '/story-mapping',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/backlog-ordering': typeof BacklogOrderingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
+  '/splitting': typeof SplittingRoute
+  '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/backlog-ordering': typeof BacklogOrderingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
+  '/splitting': typeof SplittingRoute
+  '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/backlog-ordering': typeof BacklogOrderingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
+  '/splitting': typeof SplittingRoute
+  '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/product-goal' | '/roadmap'
+  fullPaths:
+    | '/'
+    | '/backlog-ordering'
+    | '/product-goal'
+    | '/roadmap'
+    | '/splitting'
+    | '/story-mapping'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/product-goal' | '/roadmap'
-  id: '__root__' | '/' | '/product-goal' | '/roadmap'
+  to:
+    | '/'
+    | '/backlog-ordering'
+    | '/product-goal'
+    | '/roadmap'
+    | '/splitting'
+    | '/story-mapping'
+  id:
+    | '__root__'
+    | '/'
+    | '/backlog-ordering'
+    | '/product-goal'
+    | '/roadmap'
+    | '/splitting'
+    | '/story-mapping'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BacklogOrderingRoute: typeof BacklogOrderingRoute
   ProductGoalRoute: typeof ProductGoalRoute
   RoadmapRoute: typeof RoadmapRoute
+  SplittingRoute: typeof SplittingRoute
+  StoryMappingRoute: typeof StoryMappingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/backlog-ordering': {
+      id: '/backlog-ordering'
+      path: '/backlog-ordering'
+      fullPath: '/backlog-ordering'
+      preLoaderRoute: typeof BacklogOrderingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product-goal': {
@@ -82,13 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/splitting': {
+      id: '/splitting'
+      path: '/splitting'
+      fullPath: '/splitting'
+      preLoaderRoute: typeof SplittingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/story-mapping': {
+      id: '/story-mapping'
+      path: '/story-mapping'
+      fullPath: '/story-mapping'
+      preLoaderRoute: typeof StoryMappingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BacklogOrderingRoute: BacklogOrderingRoute,
   ProductGoalRoute: ProductGoalRoute,
   RoadmapRoute: RoadmapRoute,
+  SplittingRoute: SplittingRoute,
+  StoryMappingRoute: StoryMappingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
