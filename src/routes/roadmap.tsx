@@ -79,7 +79,9 @@ function RoadmapPage() {
       prev.map((c, i) => {
         if (i === colIdx) return { ...c, items: c.items.filter((it) => it.id !== itemId) };
         if (i === target) {
-          const item = prev[colIdx].items.find((it) => it.id === itemId)!;
+          const item = prev[colIdx]?.items.find((it) => it.id === itemId);
+          if (!item) return c;
+
           return { ...c, items: [...c.items, item] };
         }
         return c;
