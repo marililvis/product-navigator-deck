@@ -10,10 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountabilitiesRouteImport } from './routes/accountabilities'
 import { Route as BacklogOrderingRouteImport } from './routes/backlog-ordering'
+import { Route as EbmRouteImport } from './routes/ebm'
+import { Route as ForecastingRouteImport } from './routes/forecasting'
 import { Route as ProductGoalRouteImport } from './routes/product-goal'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as SplittingRouteImport } from './routes/splitting'
+import { Route as StakeholdersRouteImport } from './routes/stakeholders'
 import { Route as StoryMappingRouteImport } from './routes/story-mapping'
 
 const IndexRoute = IndexRouteImport.update({
@@ -21,9 +25,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountabilitiesRoute = AccountabilitiesRouteImport.update({
+  id: '/accountabilities',
+  path: '/accountabilities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BacklogOrderingRoute = BacklogOrderingRouteImport.update({
   id: '/backlog-ordering',
   path: '/backlog-ordering',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EbmRoute = EbmRouteImport.update({
+  id: '/ebm',
+  path: '/ebm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForecastingRoute = ForecastingRouteImport.update({
+  id: '/forecasting',
+  path: '/forecasting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductGoalRoute = ProductGoalRouteImport.update({
@@ -41,6 +60,11 @@ const SplittingRoute = SplittingRouteImport.update({
   path: '/splitting',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StakeholdersRoute = StakeholdersRouteImport.update({
+  id: '/stakeholders',
+  path: '/stakeholders',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StoryMappingRoute = StoryMappingRouteImport.update({
   id: '/story-mapping',
   path: '/story-mapping',
@@ -49,62 +73,90 @@ const StoryMappingRoute = StoryMappingRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accountabilities': typeof AccountabilitiesRoute
   '/backlog-ordering': typeof BacklogOrderingRoute
+  '/ebm': typeof EbmRoute
+  '/forecasting': typeof ForecastingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
   '/splitting': typeof SplittingRoute
+  '/stakeholders': typeof StakeholdersRoute
   '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accountabilities': typeof AccountabilitiesRoute
   '/backlog-ordering': typeof BacklogOrderingRoute
+  '/ebm': typeof EbmRoute
+  '/forecasting': typeof ForecastingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
   '/splitting': typeof SplittingRoute
+  '/stakeholders': typeof StakeholdersRoute
   '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accountabilities': typeof AccountabilitiesRoute
   '/backlog-ordering': typeof BacklogOrderingRoute
+  '/ebm': typeof EbmRoute
+  '/forecasting': typeof ForecastingRoute
   '/product-goal': typeof ProductGoalRoute
   '/roadmap': typeof RoadmapRoute
   '/splitting': typeof SplittingRoute
+  '/stakeholders': typeof StakeholdersRoute
   '/story-mapping': typeof StoryMappingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/accountabilities'
     | '/backlog-ordering'
+    | '/ebm'
+    | '/forecasting'
     | '/product-goal'
     | '/roadmap'
     | '/splitting'
+    | '/stakeholders'
     | '/story-mapping'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/accountabilities'
     | '/backlog-ordering'
+    | '/ebm'
+    | '/forecasting'
     | '/product-goal'
     | '/roadmap'
     | '/splitting'
+    | '/stakeholders'
     | '/story-mapping'
   id:
     | '__root__'
     | '/'
+    | '/accountabilities'
     | '/backlog-ordering'
+    | '/ebm'
+    | '/forecasting'
     | '/product-goal'
     | '/roadmap'
     | '/splitting'
+    | '/stakeholders'
     | '/story-mapping'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountabilitiesRoute: typeof AccountabilitiesRoute
   BacklogOrderingRoute: typeof BacklogOrderingRoute
+  EbmRoute: typeof EbmRoute
+  ForecastingRoute: typeof ForecastingRoute
   ProductGoalRoute: typeof ProductGoalRoute
   RoadmapRoute: typeof RoadmapRoute
   SplittingRoute: typeof SplittingRoute
+  StakeholdersRoute: typeof StakeholdersRoute
   StoryMappingRoute: typeof StoryMappingRoute
 }
 
@@ -117,11 +169,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/accountabilities': {
+      id: '/accountabilities'
+      path: '/accountabilities'
+      fullPath: '/accountabilities'
+      preLoaderRoute: typeof AccountabilitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/backlog-ordering': {
       id: '/backlog-ordering'
       path: '/backlog-ordering'
       fullPath: '/backlog-ordering'
       preLoaderRoute: typeof BacklogOrderingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ebm': {
+      id: '/ebm'
+      path: '/ebm'
+      fullPath: '/ebm'
+      preLoaderRoute: typeof EbmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forecasting': {
+      id: '/forecasting'
+      path: '/forecasting'
+      fullPath: '/forecasting'
+      preLoaderRoute: typeof ForecastingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/product-goal': {
@@ -145,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplittingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stakeholders': {
+      id: '/stakeholders'
+      path: '/stakeholders'
+      fullPath: '/stakeholders'
+      preLoaderRoute: typeof StakeholdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/story-mapping': {
       id: '/story-mapping'
       path: '/story-mapping'
@@ -157,10 +237,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountabilitiesRoute: AccountabilitiesRoute,
   BacklogOrderingRoute: BacklogOrderingRoute,
+  EbmRoute: EbmRoute,
+  ForecastingRoute: ForecastingRoute,
   ProductGoalRoute: ProductGoalRoute,
   RoadmapRoute: RoadmapRoute,
   SplittingRoute: SplittingRoute,
+  StakeholdersRoute: StakeholdersRoute,
   StoryMappingRoute: StoryMappingRoute,
 }
 export const routeTree = rootRouteImport
