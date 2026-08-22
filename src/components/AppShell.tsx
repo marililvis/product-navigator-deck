@@ -47,7 +47,7 @@ export function AppShell({
 }) {
   return (
     <div className="flex min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
-      <aside className="w-64 shrink-0 border-r border-border flex flex-col sticky top-0 h-screen bg-card/50 backdrop-blur-xl">
+      <aside className="w-64 shrink-0 border-r border-border flex flex-col sticky top-0 h-screen bg-sidebar">
         <div className="p-6 flex items-center gap-3">
           <div className="size-8 bg-foreground rounded flex items-center justify-center">
             <div className="size-3 border-2 border-background rotate-45" />
