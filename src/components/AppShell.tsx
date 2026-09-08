@@ -47,21 +47,21 @@ export function AppShell({
 }) {
   return (
     <div className="flex min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
-      <aside className="w-64 shrink-0 border-r border-border flex flex-col sticky top-0 h-screen bg-sidebar">
-        <div className="p-6 flex items-center gap-3">
-          <div className="size-8 bg-foreground rounded flex items-center justify-center">
-            <div className="size-3 border-2 border-background rotate-45" />
+      <aside className="hidden md:flex w-56 shrink-0 border-r border-border flex-col sticky top-0 h-screen bg-sidebar">
+        <div className="px-4 py-4 flex items-center gap-2.5 shrink-0">
+          <div className="size-7 bg-foreground rounded flex items-center justify-center">
+            <div className="size-2.5 border-2 border-background rotate-45" />
           </div>
-          <span className="font-display text-lg tracking-tight font-bold uppercase">
+          <span className="font-display text-base tracking-tight font-bold uppercase">
             PO Console
           </span>
         </div>
 
-        <nav className="flex-1 px-4 space-y-8 mt-2 overflow-y-auto">
+        <nav className="flex-1 min-h-0 px-3 space-y-5 overflow-y-auto pb-4">
           {NAV.map((group) => (
             <div key={group.group}>
-              <h3 className="px-2 label-mono mb-3">{group.group}</h3>
-              <ul className="space-y-1">
+              <h3 className="px-2 label-mono mb-2">{group.group}</h3>
+              <ul className="space-y-0.5">
                 {group.items.map((item) => (
                   <li key={item.to}>
                     <Link
@@ -69,7 +69,7 @@ export function AppShell({
                       activeOptions={{ exact: item.to === "/" }}
                       activeProps={{ className: "bg-foreground/5 text-foreground" }}
                       inactiveProps={{ className: "text-muted hover:bg-foreground/5" }}
-                      className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md transition-colors"
+                      className="flex items-center gap-3 px-3 py-1.5 text-[13px] font-medium rounded-md transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -80,9 +80,9 @@ export function AppShell({
           ))}
         </nav>
 
-        <div className="p-4 mt-auto border-t border-border">
-          <div className="bg-subtle rounded-lg p-3 flex items-center gap-3">
-            <div className="size-8 rounded-full bg-foreground/15 ring-1 ring-border" />
+        <div className="p-3 shrink-0 border-t border-border">
+          <div className="bg-subtle rounded-lg p-2.5 flex items-center gap-2.5">
+            <div className="size-7 rounded-full bg-foreground/15 ring-1 ring-border" />
             <div className="flex-1 overflow-hidden">
               <p className="text-xs font-semibold truncate">Product Owner</p>
               <p className="text-[10px] text-muted truncate">Single product team</p>
@@ -91,10 +91,25 @@ export function AppShell({
         </div>
       </aside>
 
-      <main className="flex-1 p-10 overflow-auto">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <header className="flex flex-wrap gap-4 justify-between items-end border-b border-border pb-8 enter">
-            <div className="space-y-2">
+      <main className="flex-1 min-w-0 px-5 py-6 lg:px-8">
+        <nav className="md:hidden -mx-5 mb-5 px-5 flex gap-2 overflow-x-auto pb-2 border-b border-border">
+          {NAV.flatMap((g) => g.items).map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              activeOptions={{ exact: item.to === "/" }}
+              activeProps={{ className: "bg-foreground text-background" }}
+              inactiveProps={{ className: "bg-subtle text-muted" }}
+              className="whitespace-nowrap px-3 py-1.5 text-xs font-medium rounded-full"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="max-w-6xl mx-auto space-y-6">
+          <header className="flex flex-wrap gap-3 justify-between items-end border-b border-border pb-5 enter">
+            <div className="space-y-1.5">
               <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-tighter text-muted">
                 <span className="px-1.5 py-0.5 border border-border">Ref: {ref}</span>
                 {meta ? (
@@ -104,7 +119,7 @@ export function AppShell({
                   </>
                 ) : null}
               </div>
-              <h1 className="text-5xl font-display font-extrabold tracking-tighter text-balance uppercase">
+              <h1 className="text-2xl lg:text-3xl font-display font-extrabold tracking-tight text-balance uppercase">
                 {title}
               </h1>
             </div>
