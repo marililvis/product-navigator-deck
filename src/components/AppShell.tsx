@@ -123,7 +123,17 @@ export function AppShell({
                 {title}
               </h1>
             </div>
-            {actions ? <div className="flex gap-2">{actions}</div> : null}
+            <div className="flex gap-2 print:hidden">
+              {actions}
+              <button
+                type="button"
+                onClick={() => window.print()}
+                title="Save this page as a PDF"
+                className="px-4 py-2 border border-border text-sm font-semibold rounded hover:bg-foreground/5 transition-colors flex items-center gap-2"
+              >
+                <span aria-hidden>⎙</span> Save as PDF
+              </button>
+            </div>
           </header>
           {children}
         </div>
