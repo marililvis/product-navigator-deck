@@ -115,3 +115,29 @@
     background-color: var(--surface);
   }
 }
+
+@media print {
+  aside,
+  main > nav,
+  .print\:hidden {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  main > div {
+    max-width: 100% !important;
+  }
+  body {
+    background: white !important;
+  }
+  .panel {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
